@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://*.supabase.co; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<title>Halo Feedback</title>
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bg: #0a0710; --panel: rgba(255, 255, 255, .05); --edge: rgba(255, 255, 255, .11); --text: #f7f2ff; --soft: #b8aecb; --pink: #ff4fa3; --violet: #7a5cff; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; min-height: 100vh;
+    background-image: radial-gradient(ellipse at top, rgba(255, 79, 163, .14), transparent 55%); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 60px; }
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  header img { width: 40px; height: 40px; border-radius: 10px; }
+  header h1 { font-size: 26px; letter-spacing: -.5px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 9px 16px; border-radius: 12px; border: 0; cursor: pointer;
+    font: inherit; font-size: 14px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--pink), var(--violet)); }
+  .btn.ghost { background: var(--panel); border: 1px solid var(--edge); }
+  .btn.danger { background: rgba(255, 90, 110, .12); border: 1px solid rgba(255, 90, 110, .4); color: #ffb3bd; }
+  .btn:disabled { opacity: .6; cursor: default; }
+  .panel, .card { background: var(--panel); border: 1px solid var(--edge); border-radius: 18px; }
+  #loginForm { max-width: 380px; padding: 24px; display: grid; gap: 14px; }
+  #loginForm h2 { font-size: 20px; }
+  label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+  input { width: 100%; padding: 11px 14px; border-radius: 12px; border: 1px solid var(--edge); background: rgba(255, 255, 255, .04); color: var(--text); font: inherit; font-size: 15px; }
+  input:focus { outline: none; border-color: var(--pink); }
+  .status { font-size: 14px; color: var(--soft); min-height: 1em; }
+  .status.err { color: #ff8a9b; }
+  .bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  #count { color: var(--soft); font-size: 14px; margin-right: auto; }
+  .tabs { display: flex; background: var(--panel); border: 1px solid var(--edge); border-radius: 12px; padding: 3px; }
+  .tabs button { border: 0; background: none; color: var(--soft); font: inherit; font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 9px; cursor: pointer; }
+  .tabs button.on { background: rgba(255, 79, 163, .18); color: var(--text); }
+  #list { display: grid; gap: 12px; margin-top: 10px; }
+  .card { padding: 16px 18px; }
+  .card.unread { border-color: rgba(255, 79, 163, .45); box-shadow: 0 0 30px rgba(255, 79, 163, .08); }
+  .meta { display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--soft); }
+  .meta a { color: var(--text); }
+  .msg { margin: 8px 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .actions { display: flex; gap: 8px; }
+  .empty { color: var(--soft); text-align: center; padding: 40px 0; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header><img src="icon.png" alt=""><h1>Feedback</h1></header>
+
+  <section id="login" hidden>
+    <form id="loginForm" class="panel" method="post">
+      <h2>Owner sign-in</h2>
+      <label>Email<input id="email" type="email" autocomplete="username" required></label>
+      <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
+      <button class="btn" type="submit">Sign in</button>
+      <p class="status" id="loginStatus" role="status"></p>
+    </form>
+  </section>
+
+  <section id="inbox" hidden>
+    <div class="bar">
+      <span id="count"></span>
+      <div class="tabs"><button type="button" data-filter="all" class="on">All</button><button type="button" data-filter="unread">Unread</button></div>
+      <button class="btn ghost" type="button" id="refresh">Refresh</button>
+      <button class="btn ghost" type="button" id="signOut">Sign out</button>
+    </div>
+    <p class="status" id="inboxStatus" role="status"></p>
+    <div id="list"></div>
+  </section>
+</main>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
