@@ -168,6 +168,9 @@
   .download .cta { justify-content: center; }
   .help { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 760px; margin: 28px auto 0; text-align: left; }
   @media (max-width: 720px) { .help { grid-template-columns: 1fr; } }
+  .safe { display: flex; align-items: center; justify-content: center; gap: 8px 16px; flex-wrap: wrap; margin-top: 20px; color: var(--soft); font-size: 15px; }
+  .safe a { color: var(--text); text-underline-offset: 3px; }
+  .safe-note { margin-top: 6px; color: var(--soft); font-size: 14px; }
   .support { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 26px; color: var(--soft); font-size: 15px; }
   details { background: rgba(0, 0, 0, .25); border: 1px solid var(--edge); border-radius: 14px; padding: 14px 16px; }
   summary { cursor: pointer; font-weight: 600; }
@@ -204,7 +207,7 @@
         <a class="btn dl-mac" href="#download">Download for Mac<small>Free · macOS 14.2+</small></a>
         <a class="btn ghost dl-win" href="#download">Download for Windows<small>Free · Windows 10 &amp; 11</small></a>
       </div>
-      <p class="trust">Works with Spotify and Apple Music · No account needed</p>
+      <p class="trust">Works with Spotify and Apple Music · No account needed · ✅ Virus-scanned</p>
     </div>
     <div class="phone">
       <video src="assets/demo.mp4" poster="assets/demo-poster.jpg" autoplay muted loop playsinline aria-label="Halo running on a Mac"></video>
@@ -312,6 +315,12 @@
         <a class="btn dl-mac" id="mac" href="#">Download for Mac<small>Apple chip · macOS 14.2 or newer</small></a>
         <a class="btn dl-win" id="win" href="#">Download for Windows<small>Windows 10 &amp; 11 · 64-bit</small></a>
       </div>
+      <div class="safe">
+        <span>✅ Scanned clean by 65+ antivirus engines</span>
+        <a href="https://www.virustotal.com/gui/file/353b4fc814d57f80fbafbe4b20d54d1c9b7922d484396a3c731c16c3b4d74060" target="_blank" rel="noopener">Mac report</a>
+        <a href="https://www.virustotal.com/gui/file/d50fb7bb85405a11e3150319ed5f18e95449df4de86d9659f14ddac745a75fc2" target="_blank" rel="noopener">Windows report</a>
+      </div>
+      <p class="safe-note">No account · No ads · No tracking</p>
       <div class="help">
         <details>
           <summary>First time opening on Mac</summary>
@@ -345,6 +354,7 @@
       <details><summary>Is Halo really free?</summary><p>Yes. No trial, no account and no ads. If you enjoy it, you can <a href="https://ko-fi.com/getthehalo" target="_blank" rel="noopener">leave a tip on Ko-fi</a> to help keep it free.</p></details>
       <details><summary>Do I need to connect my Spotify account?</summary><p>No. Halo reads what's playing straight from your computer, so there's nothing to log in to.</p></details>
       <details><summary>Where do the lyrics come from?</summary><p>Halo looks up synced lyrics by the song's name from free lyrics libraries. Only the song name and artist are sent, nothing else.</p></details>
+      <details><summary>Is Halo safe to download?</summary><p>Yes. Both downloads were scanned on VirusTotal by over 65 antivirus engines, and none flagged them: <a href="https://www.virustotal.com/gui/file/353b4fc814d57f80fbafbe4b20d54d1c9b7922d484396a3c731c16c3b4d74060" target="_blank" rel="noopener">Mac report</a> · <a href="https://www.virustotal.com/gui/file/d50fb7bb85405a11e3150319ed5f18e95449df4de86d9659f14ddac745a75fc2" target="_blank" rel="noopener">Windows report</a>. Halo has no account, no ads and no tracking. To find lyrics, it only sends the song's name and artist.</p></details>
       <details><summary>Why does my computer warn me the first time?</summary><p>Halo is new and made by an independent developer, so Apple and Microsoft don't recognize it yet. The steps above show how to open it. You only do this once.</p></details>
       <details><summary>Which computers does it work on?</summary><p>Macs with an Apple chip (M1 or newer) on macOS 14.2 or later, and 64-bit Windows 10 (version 2004 or later) or Windows 11.</p></details>
       <details><summary>Does it slow my computer down?</summary><p>No. Halo is built to be light: on a Mac the lyrics use only a few percent of the processor.</p></details>
