@@ -34,13 +34,17 @@
     return res.status === 204 ? null : res.json();
   }
 
-  async function load() {
-    note("inboxStatus", "Loading…");
+  async function load(quiet) {
+    if (!quiet) note("inboxStatus", "Loading…");
     try {
       items = await api("/rest/v1/feedback?select=id,created_at,message,email,is_read&order=created_at.desc");
       note("inboxStatus", ""); render();
     } catch (e) { note("inboxStatus", e.message, true); }
   }
+  // New feedback shows up by itself: every 20 seconds while the inbox is open, and whenever you come back to the tab.
+  var signedIn = function () { return session && !$("inbox").hidden; };
+  setInterval(function () { if (signedIn() && !document.hidden) load(true); }, 20000);
+  document.addEventListener("visibilitychange", function () { if (signedIn() && !document.hidden) load(true); });
 
   function button(text, kind, onclick) {
     var b = document.createElement("button");
@@ -52,6 +56,7 @@
     var list = $("list"), unread = items.filter(function (f) { return !f.is_read; });
     var shown = filter === "all" ? items : unread;
     $("count").textContent = unread.length + " unread · " + items.length + " total";
+    document.title = (unread.length ? "(" + unread.length + ") " : "") + "Halo Feedback";  // the unread count shows on the tab
     list.textContent = "";
     if (!shown.length) {
       var p = document.createElement("p");
@@ -107,7 +112,7 @@
     } catch (err) { save(null); note("loginStatus", err.message, true); }
   };
   $("signOut").onclick = signOut;
-  $("refresh").onclick = load;
+  $("refresh").onclick = function () { load(); };
   document.querySelectorAll("[data-filter]").forEach(function (b) {
     b.onclick = function () {
       filter = b.dataset.filter;

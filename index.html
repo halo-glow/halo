@@ -401,7 +401,7 @@
     <p>Ideas, bugs, anything. Only the developer reads it.</p>
     <label>Message<textarea name="message" required maxlength="2000" placeholder="What would make Halo better?"></textarea></label>
     <label><span>Email <span class="opt">(optional, if you'd like a reply)</span></span><input name="email" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
-    <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input class="hp" name="fb_trap_x7" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="row">
       <span class="status" id="fbStatus" role="status"></span>
       <button class="btn mini ghost" type="button" id="fbCancel">Cancel</button>
@@ -425,7 +425,8 @@
       var data = new FormData(form), message = String(data.get("message") || "").trim();
       if (!message) return say("Please write a message.", true);
       if (!form.reportValidity()) return;
-      if (data.get("website")) { form.reset(); dlg.close(); return; }  // only bots fill the hidden field
+      // Only bots fill the hidden field (its odd name keeps browsers' autofill away from it).
+      if (data.get("fb_trap_x7")) { form.reset(); dlg.close(); return; }
       if (!cfg.url || cfg.url.indexOf("YOUR-") >= 0) return say("Feedback isn't set up yet.", true);
       send.disabled = true; say("Sending…");
       var headers = { "Content-Type": "application/json", apikey: cfg.key, Prefer: "return=minimal" };
