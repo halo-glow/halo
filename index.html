@@ -400,7 +400,7 @@
     <h3 id="fbTitle">Send feedback</h3>
     <p>Ideas, bugs, anything. Only the developer reads it.</p>
     <label>Message<textarea name="message" required maxlength="2000" placeholder="What would make Halo better?"></textarea></label>
-    <label><span>Email <span class="opt">(optional, if you'd like a reply)</span></span><input name="email" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com"></label>
+    <label><span>Email <span class="opt">(optional, if you'd like a reply)</span></span><input name="email" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="An email like name@example.com"></label>
     <input class="hp" name="fb_trap_x7" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="row">
       <span class="status" id="fbStatus" role="status"></span>
